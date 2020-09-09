@@ -246,6 +246,8 @@ body{
     font-family: "Times New Roman";
     cursor: pointer;
     color: white;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .actions li a:hover {

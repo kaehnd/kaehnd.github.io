@@ -73,6 +73,11 @@ function initForm() {
                 }
             });
 
+            if (currentIndex === 1 && newIndex === 0) {
+                nextButton.show();
+                submitButton.show();
+            }
+
             if (currentIndex === 0 && newIndex === 1 ) {
                 let searchString = $('#searchBar').val();
                 let people = $('#peopleOptions').empty();
@@ -83,10 +88,10 @@ function initForm() {
                 try {
                     personFoundSection.hide();
                     record = await GoogleClient.searchInSpreadsheet(searchString);
-
+                    console.log("Record" + record);
                     if (record === undefined) {
                         personNotFoundSection.show();
-
+                        submitButton.hide();
                         nextButton.hide()
 
                     } else {
@@ -112,6 +117,10 @@ function initForm() {
 
             await record.RSVP(num, "NOPE")
             return true;
+        },
+        onFinished: function (event, currentIndex) {
+            $('#RSVPForm').hide();
+            $('#submittedText').show();
         }
     });
 
