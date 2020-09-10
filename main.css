@@ -266,9 +266,11 @@ ul
     list-style-type: none;
 }
 
-.form-content {
-    margin-top: 100px;
-    margin-bottom: 100px;
+
+#RSVPArea {
+    margin: 0 auto;
+    padding: 100px;
+    width: fit-content;
 
 }
 .form-control {

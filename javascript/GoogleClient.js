@@ -2,7 +2,6 @@ let GoogleClient = (function() {
 
     'use strict';
 
-
     const Name = "Name",
         NumAttendees = "Number of Attendees",
         Relation = "Relation/Role",
@@ -15,46 +14,18 @@ let GoogleClient = (function() {
         PlusOneEligibility = "Plus 1 Eligibility",
         InvitedToBonfire = "Invited to Bonfire?";
 
-    // placeholder for cached DOM elements
-    let DOM = {
-        $someElement : null
-    };
+    const PlusOneOptions = {
+        Eligible: "Eligible",
+        NotEligible: "Not Eligible",
+        AccountedFor: "Not Eligible (Accounted For)",
+        Reserved: "Reserved"
+    }
 
-    let SheetRow;
-    let token;
 
     /* =================== private methods ================= */
-    // cache DOM elements
-    function cacheDom() {
-        //DOM.$someElement = $('#some-element');
-    }
 
-    async function loadSpreadsheetData(range) {
-        token = await getAuthToken();
-        return new Promise( (resolve) => {
-            $.ajax({
-                type: "GET",
-                url: `https://sheets.googleapis.com/v4/spreadsheets/${XORCipher.decode("Xidk92jnJa5eW7Rh4ownL=W2kmn", Things.Things.Thing2)}/values/${range}`,
-                contentType: "application/json",
-                headers: {"Authorization" : `Bearer ${token}`},
-                success: function(data) {
+    let token;
 
-                    let sheet = new Map();
-                    let headers = data.values[0];
-
-                    for (let i = 1; i < data.values.length; i++) {
-                        let map = new Map();
-                        for (let j = 0; j < headers.length; j++) {
-                            map.set(headers[j], data.values[i][j]);
-                        }
-                        sheet.set(map.get("Name"), {Row : map, RowNum : i})
-                    }
-                    resolve(sheet);
-                }
-
-            });
-        })
-    }
     function getAuthToken() {
         return new Promise((resolve => {
             let pHeader = {"alg":"RS256","typ":"JWT"}
@@ -94,6 +65,25 @@ let GoogleClient = (function() {
         }))
     }
 
+
+
+
+
+    async function loadSpreadsheetData(range) {
+        token = await getAuthToken();
+        return new Promise( (resolve) => {
+            $.ajax({
+                type: "GET",
+                url: `https://sheets.googleapis.com/v4/spreadsheets/${XORCipher.decode("Xidk92jnJa5eW7Rh4ownL=W2kmn", Things.Things.Thing2)}/values/${range}`,
+                contentType: "application/json",
+                headers: {"Authorization" : `Bearer ${token}`},
+                success: function(data) {
+                    resolve(data)
+                }
+            });
+        })
+    }
+
     function putSpreadsheetData(range, data) {
 
         let json = {
@@ -111,6 +101,26 @@ let GoogleClient = (function() {
             });
         });
     }
+
+
+    //Methods for this site
+
+
+    function valueRangeToDictionary(valueRange) {
+        let sheet = new Map();
+        let headers = valueRange.values[0];
+
+        for (let i = 1; i < valueRange.values.length; i++) {
+            let map = new Map();
+            for (let j = 0; j < headers.length; j++) {
+                map.set(headers[j], valueRange.values[i][j]);
+            }
+            sheet.set(map.get("Name"), {Row : map, RowNum : i+1})
+        }
+        return sheet;
+    }
+
+
     
     
     function searchFor(searchTerm, valueDict) {
@@ -120,13 +130,10 @@ let GoogleClient = (function() {
             .filter(function(token){
                 return token.trim() !== '' && token !== "and";
             });
-
         let result = undefined;
 
         if (tokens.length > 1) {
-
             const searchTermRegex = new RegExp("\\b" +tokens.join('\\b|\\b') + "\\b", 'g');
-
             let matchedKey = "";
             let maxMatched = 0;
 
@@ -146,48 +153,42 @@ let GoogleClient = (function() {
         return result;
     }
 
-    // bind events
 
-    // handle click events
-    function handleClick(e) {
-        //render(); // etc
+    async function checkIfFull() {
+        let num = await loadSpreadsheetData("B68");
+        return num.values[0][0] <= 0;
     }
-    // render DOM
-    function render() {
 
-    }
+
     /* =================== public methods ================== */
-    // main init method
 
     async function searchInSpreadsheet(searchTerm) {
-        let sheet = await loadSpreadsheetData("A1:L64");
-        SheetRow = searchFor(searchTerm, sheet);
-        return SheetRow === undefined ? undefined : {
-            NumAttendees : SheetRow.Row.get(NumAttendees),
-            PlusOneEligibility : SheetRow.Row.get(PlusOneEligibility),
-            PersonName: SheetRow.Row.get(Name),
+        let valueRange = await loadSpreadsheetData("A1:L64");
+        let sheet = valueRangeToDictionary(valueRange);
+        let sheetRow = searchFor(searchTerm, sheet);
+
+        let isFull = await checkIfFull();
+
+        return sheetRow === undefined ? undefined : {
+            NumAttendees : sheetRow.Row.get(NumAttendees),
+            PlusOneEligibility : isFull ? PlusOneOptions.NotEligible : sheetRow.Row.get(PlusOneEligibility),
+            PersonName: sheetRow.Row.get(Name),
 
             RSVP: async function(attendees, plusOne){
                 let data = [
-                    ["RSVPed", attendees, plusOne ? "Reserved" : "Not Reserved"]
+                    ["RSVPed", attendees, sheetRow.Row.get(PlusOneEligibility)]
                 ];
-                let range = `H${SheetRow.RowNum}:J${SheetRow.RowNum}`
+                let range = `H${sheetRow.RowNum}:J${sheetRow.RowNum}`
                 return await putSpreadsheetData(range, data);
             }
         };
     }
 
-    function getNumberAttendees() {
-        return SheetRow.Row.get(NumAttendees);
-    }
-
-    function init() {
 
 
-    }
     /* =============== export public methods =============== */
     return {
-        init: init,
-        searchInSpreadsheet : searchInSpreadsheet
+        searchInSpreadsheet : searchInSpreadsheet,
+        PlusOneOptions
     };
 }());

@@ -8,9 +8,6 @@ $(document).ready(function(){
             + '<span class="col-sm clk-component"><span class="h1 font-weight-bold">%S</span> Sec</span>'));
     });
 
-    GoogleClient.init();
-
-
 
     let nav = $('#primary-navigation');
 
@@ -26,6 +23,7 @@ $(document).ready(function(){
     });
 
     initForm();
+
 
 
 
@@ -88,7 +86,6 @@ function initForm() {
                 try {
                     personFoundSection.hide();
                     record = await GoogleClient.searchInSpreadsheet(searchString);
-                    console.log("Record" + record);
                     if (record === undefined) {
                         personNotFoundSection.show();
                         submitButton.hide();

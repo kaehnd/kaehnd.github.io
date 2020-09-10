@@ -171,51 +171,55 @@
 
 
 
+<div id="RSVPArea">
 
+    <div class="form-content" id="RSVPForm">
+        <form action="#" onsubmit="return false">
+            <div id="wizard">
+                <!-- SECTION 1 -->
+                <h4></h4>
+                <section>
+                    <h3>RSVP!</h3>
+                    <form class="form-inline mr-auto">
+                        <input id="searchBar" class="form-control mr-sm-2" type="search" placeholder="Search by full name" aria-label="Search" >
+                    </form>
+                </section>
 
-<div class="form-content" id="RSVPForm">
-    <form action="#" onsubmit="return false">
-        <div id="wizard">
-            <!-- SECTION 1 -->
-            <h4></h4>
-            <section>
-                <h3>RSVP!</h3>
-                <form class="form-inline mr-auto">
-                    <input id="searchBar" class="form-control mr-sm-2" type="search" placeholder="Search by full name" aria-label="Search" >
-                </form>
-            </section>
+                <!-- SECTION 2 -->
+                <h4></h4>
+                <section>
+                    <div id="personFound">
+                        <h3 id="personName">Set The Event</h3>
+                        <div class="form-group">
+                            <div class="form-price">
 
-            <!-- SECTION 2 -->
-            <h4></h4>
-            <section>
-                <div id="personFound">
-                    <h3 id="personName">Set The Event</h3>
-                    <div class="form-group">
-                        <div class="form-price">
-
-                        </div>
-                        <div class="form-select">
-                            <label >People:</label>
-                            <div class="form-holder">
-                                <label for="peopleOptions"></label><select name="" id="peopleOptions" class="form-control dropdown">
+                            </div>
+                            <div class="form-select">
+                                <label >People:</label>
+                                <div class="form-holder">
+                                    <label for="peopleOptions"></label><select name="" id="peopleOptions" class="form-control dropdown">
                                 </select>
-                                <i class="zmdi zmdi-chevron-down"></i>
+                                    <i class="zmdi zmdi-chevron-down"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div id="personNotFound" >
-                    <h3>Result Not Found!</h3>
-                </div>
-            </section>
-        </div>
-    </form>
+                    <div id="personNotFound" >
+                        <h3>Result Not Found!</h3>
+                    </div>
+                </section>
+            </div>
+        </form>
+    </div>
+
+
+    <div id="submittedText" style="display: none">
+        <h1>Thank you for submitting your RSVP to our wedding!</h1>
+    </div>
+
 </div>
 
 
-<div id="submittedText" style="display: none">
-    <h1>Thank you for submitting your RSVP to our wedding!</h1>
-</div>
 
 
 
