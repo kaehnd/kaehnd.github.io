@@ -24,9 +24,6 @@ $(document).ready(function(){
 
     initForm();
 
-
-
-
     $('#searchBar').keyup( function (event) {
         if (event.keyCode === 13) {
             $(".actions li a").each(function (index) {
@@ -111,8 +108,7 @@ function initForm() {
         },
         onFinishing: async function (event, currentIndex) {
             let num = $('#peopleOptions').children('option:selected').text()
-
-            await record.RSVP(num, "NOPE")
+            await record.RSVP(parseInt(num), "NOPE")
             return true;
         },
         onFinished: function (event, currentIndex) {
@@ -133,6 +129,3 @@ function initMap() {
         document.getElementById('map'), {zoom: 10, center: location});
     let marker = new google.maps.Marker({position: location, map: map});
 }
-
-
-

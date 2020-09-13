@@ -91,6 +91,8 @@ let GoogleClient = (function() {
             "majorDimension": "ROWS",
             "values": data
         }
+
+        console.log(JSON.stringify(json));
         return new Promise( (resolve) => {
             $.ajax({
                 type: "PUT",
@@ -105,8 +107,22 @@ let GoogleClient = (function() {
 
     //Methods for this site
 
+    function valueRangeToDictionaryArray(valueRange) {
+        let sheet = [];
+        let headers = valueRange.values[0];
 
-    function valueRangeToDictionary(valueRange) {
+        for (let i = 1; i < valueRange.values.length; i++) {
+            let map = new Map();
+            for (let j = 0; j < headers.length; j++) {
+                map.set(headers[j], valueRange.values[i][j]);
+            }
+            sheet.push({Row : map, RowNum : i+1})
+        }
+        return sheet;
+    }
+
+
+    function valueRangeToDictionaryDictionary(valueRange, key) {
         let sheet = new Map();
         let headers = valueRange.values[0];
 
@@ -115,7 +131,7 @@ let GoogleClient = (function() {
             for (let j = 0; j < headers.length; j++) {
                 map.set(headers[j], valueRange.values[i][j]);
             }
-            sheet.set(map.get("Name"), {Row : map, RowNum : i+1})
+            sheet.set(map.get(key), {Row : map, RowNum : i+1})
         }
         return sheet;
     }
@@ -164,7 +180,7 @@ let GoogleClient = (function() {
 
     async function searchInSpreadsheet(searchTerm) {
         let valueRange = await loadSpreadsheetData("A1:L64");
-        let sheet = valueRangeToDictionary(valueRange);
+        let sheet = valueRangeToDictionaryDictionary(valueRange, "Name");
         let sheetRow = searchFor(searchTerm, sheet);
 
         let isFull = await checkIfFull();
