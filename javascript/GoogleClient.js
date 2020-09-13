@@ -66,9 +66,6 @@ let GoogleClient = (function() {
     }
 
 
-
-
-
     async function loadSpreadsheetData(range) {
         token = await getAuthToken();
         return new Promise( (resolve) => {

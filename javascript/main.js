@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $('.header').height($(window).height());
     $('#clock').countdown('2021/05/30').on('update.countdown', function(event) {
-        let $this = $(this).html(event.strftime(''
+        $(this).html(event.strftime(''
             + '<span class="col-sm clk-component"><span class="h1 font-weight-bold">%D</span> Day%!d</span>'
             + '<span class="col-sm clk-component"><span class="h1 font-weight-bold">%H</span> Hr</span>'
             + '<span class="col-sm clk-component"><span class="h1 font-weight-bold">%M</span> Min</span>'
@@ -14,8 +14,8 @@ $(document).ready(function(){
     let fixed = nav.offsetTop;
 
     nav.find('a').on('click', function () {
-        var $el = $(this)
-        id = $el.attr('href');
+        let $el = $(this)
+        let id = $el.attr('href');
         $('html, body').animate({
             scrollTop: $(id).offset().top - 75
         }, 500);
@@ -26,7 +26,7 @@ $(document).ready(function(){
 
     $('#searchBar').keyup( function (event) {
         if (event.keyCode === 13) {
-            $(".actions li a").each(function (index) {
+            $(".actions li a").each(function () {
                 if ($(this).text().includes("Next")) {
                     $(this).click();
                 }
@@ -58,7 +58,7 @@ function initForm() {
         },
         onStepChanging: async function (event, currentIndex, newIndex) {
 
-            $(".actions li a").each(function (index) {
+            $(".actions li a").each(function () {
                 if ($(this).text().includes("Next")) {
                     nextButton = $(this);
                 } else if ($(this).text().includes("Previous")){
@@ -97,6 +97,19 @@ function initForm() {
                         }
                         personName.text(record.PersonName);
 
+                        switch (record.PlusOneEligibility) {
+                            case GoogleClient.PlusOneOptions.AccountedFor:
+                                //todo let them know their significant other is already invited
+                                break;
+                            case GoogleClient.PlusOneOptions.Reserved:
+                            case GoogleClient.PlusOneOptions.Eligible:
+                                //todo add possibility to get a plus 1
+                                break;
+                            default:
+                        }
+
+
+
                         personFoundSection.show();
                     }
                 } catch (e) {
@@ -106,12 +119,13 @@ function initForm() {
             }
             return true;
         },
-        onFinishing: async function (event, currentIndex) {
+        onFinishing: async function () {
             let num = $('#peopleOptions').children('option:selected').text()
+            //todo get if plus one was reserved
             await record.RSVP(parseInt(num), "NOPE")
             return true;
         },
-        onFinished: function (event, currentIndex) {
+        onFinished: function () {
             $('#RSVPForm').hide();
             $('#submittedText').show();
         }
