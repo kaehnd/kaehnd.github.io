@@ -18,7 +18,8 @@ let GoogleClient = (function() {
         Eligible: "Eligible",
         NotEligible: "Not Eligible",
         AccountedFor: "Not Eligible (Accounted For)",
-        Reserved: "Reserved"
+        Reserved: "Reserved",
+        Guaranteed: "Guaranteed"
     }
 
 
@@ -184,20 +185,19 @@ let GoogleClient = (function() {
 
         return sheetRow === undefined ? undefined : {
             NumAttendees : sheetRow.Row.get(NumAttendees),
-            PlusOneEligibility : isFull ? PlusOneOptions.NotEligible : sheetRow.Row.get(PlusOneEligibility),
+
+            PlusOneEligibility : isFull && sheetRow.Row.get(PlusOneEligibility) !== PlusOneOptions.Guaranteed ? PlusOneOptions.NotEligible : sheetRow.Row.get(PlusOneEligibility),
             PersonName: sheetRow.Row.get(Name),
 
             RSVP: async function(attendees, plusOne){
                 let data = [
-                    ["RSVPed", attendees, sheetRow.Row.get(PlusOneEligibility)]
+                    ["RSVPed", attendees, plusOne ? PlusOneOptions.Reserved : sheetRow.Row.get(PlusOneEligibility)]
                 ];
                 let range = `H${sheetRow.RowNum}:J${sheetRow.RowNum}`
                 return await putSpreadsheetData(range, data);
             }
         };
     }
-
-
 
     /* =============== export public methods =============== */
     return {

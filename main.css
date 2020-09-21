@@ -231,7 +231,7 @@ body{
 
 .actions ul {
     display: flex;
-    /*justify-content: space-between;*/
+    padding: 0;
 }
 
 .actions li a {
@@ -269,12 +269,12 @@ ul
 
 #RSVPArea {
     margin: 0 auto;
-    padding: 100px;
+    /*padding: 100px;*/
     width: fit-content;
-
+    padding-top: 50px;
 }
 .form-control {
-    margin-left: 50px;
+    /*margin-left: 50px;*/
 }
 
 
@@ -282,7 +282,18 @@ ul
     width: 100px;
 }
 
-#searchBar {
+.btn {
+    background-color: var(--burgandy);
+    color: white;
+    width: auto;
     max-width: 400px;
 }
 
+.btn.active{
+    background-color: var(--lpink);
+    color: black;
+}
+
+#searchBar {
+    max-width: 400px;
+}

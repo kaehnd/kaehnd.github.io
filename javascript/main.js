@@ -92,24 +92,24 @@ function initForm() {
                         personNotFoundSection.hide();
                         nextButton.show()
 
-                        for (let i = 1; i <= record.NumAttendees; i ++) {
+                        for (let i = record.NumAttendees; i >= 0; i --) {
                             people.append(`<option value=\"${i}\" class="option">${i}</option>`);
                         }
                         personName.text(record.PersonName);
 
                         switch (record.PlusOneEligibility) {
                             case GoogleClient.PlusOneOptions.AccountedFor:
-                                //todo let them know their significant other is already invited
+                                $('#accountedForDialog').show();
                                 break;
                             case GoogleClient.PlusOneOptions.Reserved:
                             case GoogleClient.PlusOneOptions.Eligible:
-                                //todo add possibility to get a plus 1
+                            case GoogleClient.PlusOneOptions.Guaranteed:
+                                $('#plusOneBtn').show();
                                 break;
                             default:
+                                $('#plusOneBtn').hide();
+                                $('#accountedForDialog').hide();
                         }
-
-
-
                         personFoundSection.show();
                     }
                 } catch (e) {
@@ -121,8 +121,8 @@ function initForm() {
         },
         onFinishing: async function () {
             let num = $('#peopleOptions').children('option:selected').text()
-            //todo get if plus one was reserved
-            await record.RSVP(parseInt(num), "NOPE")
+            let plusOne = $('#plusOneBtn').hasClass('active');
+            await record.RSVP(parseInt(num), plusOne)
             return true;
         },
         onFinished: function () {
