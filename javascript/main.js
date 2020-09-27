@@ -1,15 +1,15 @@
 $(document).ready(function(){
-    $('.header').height($(window).height());
+    // $('.header').height($(window).height());
     $('#clock').countdown('2021/05/30').on('update.countdown', function(event) {
         $(this).html(event.strftime(''
             + '<span class="col-sm clk-component"><span class="h1 font-weight-bold">%D</span> Day%!d</span>'
             + '<span class="col-sm clk-component"><span class="h1 font-weight-bold">%H</span> Hr</span>'
             + '<span class="col-sm clk-component"><span class="h1 font-weight-bold">%M</span> Min</span>'
             + '<span class="col-sm clk-component"><span class="h1 font-weight-bold">%S</span> Sec</span>'));
-    });
+    })
 
 
-    let nav = $('#primary-navigation');
+    let nav = $('#primary-navigation, header');
 
     let fixed = nav.offsetTop;
 
@@ -34,7 +34,6 @@ $(document).ready(function(){
         }
     });
 
-    //https://www.google.com/maps/dir//Pioneer+Creek+Farm,+Superior+Drive,+Lomira,+WI/@43.556544,-88.391747,15z/data=!4m9!4m8!1m0!1m5!1m1!1s0x88046eac31783f23:0xa3d022140f14235c!2m2!1d-88.391747!2d43.556544!3e0
 });
 
 

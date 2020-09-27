@@ -17,66 +17,72 @@
     <div class="collapse navbar-collapse" id="main-navigation">
         <ul id="primary-navigation" class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="#Info">Info</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="#GalleryAnchor">Gallery</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#Location">Location</a>
+                <a class="nav-link" href="#RSVPAnchor">RSVP</a>
             </li>
         </ul>
     </div>
 </nav>
 
 <!--Header-->
-<header class="page-header header container-fluid">
-    <div id="header-overlay container-fluid" class="overlay">
-
-        <!--Title and stuff-->
-        <div class="row align-items-start" style="align-self: center">
-            <div class="col" style="align-self: center">
-                <div class="description" style="align-self: center">
-                    <h1>Brittany & Danny</h1>
-                    <p>Are getting married on 5/30/2021!</p>
-                    <button id="hdrBtn" class="btn btn-outline-secondary btn-lg">RSVP!</button>
-                </div>
-            </div>
-        </div>
-
-        <!--Countdown timer-->
-        <div class="row align-items-center">
-            <div class="col">
-                <div class="text-white p-5 text-center mb-5 container-fluid" style="order: 1">
-                    <div id="clock" class="row countdown pt-4 justify-content-center no-gutters"></div>
-                    <p class="mb-0 font-weight-bold text-uppercase">Until the day!</p>
-                </div>
+<header class="page-header header container-fluid img-fluid">
+    <!--Title and stuff-->
+    <div class="row align-items-start" style="align-self: center">
+        <div class="col" style="align-self: center">
+            <div class="description" style="align-self: center">
+                <h1>Brittany & Danny</h1>
+                <p>Are getting married on 5/30/2021!</p>
+                <a id="hdrBtn" href="#RSVPAnchor" class="btn btn-outline-secondary btn-lg">RSVP!</a>
             </div>
         </div>
     </div>
 
+    <!--Countdown timer-->
+    <div class="row align-items-center">
+        <div class="col">
+            <div class="text-white p-5 text-center mb-5 container-fluid" style="order: 1">
+                <div id="clock" class="row countdown pt-4 justify-content-center no-gutters"></div>
+                <p class="mb-0 font-weight-bold text-uppercase">Until the day!</p>
+            </div>
+        </div>
+    </div>
 </header>
 
 
 <!--Location-->
-<a id="Location">
-    <div class="container-fluid">
+<a id="Info"></a>
+<div id="infoSection" class="container-fluid align-items-center">
         <div class="row">
-            <div class="col" style="align-self: center">
-                <div id="map-overlay" class="text-center">
-                    <h2 style="color:#000000;">Our Location</h2>
+            <div class="col-sm-2 align-text-top">
+                <div id="" class="text-center">
+                    <h2 style="color:#000000;">When</h2>
                     <address style="color:#000000;">
-                        <strong>Company name</strong><br>
-                        1234 Street Dr.<br>
-                        Vancouver, BC<br>
-                        Canada<br>
-                        V6G 1G9<br>
-                        <abbr title="Phone">Tel:</abbr> (604) 555-4321
+                        <strong>Ceremony at 1:00pm</strong><br>
                     </address>
                 </div>
             </div>
-            <div class="col" style="background-color: pink">
-                <div id="map"></div>
+
+            <div class="col-sm-2 align-text-top" >
+                <div id="where" class="text-center">
+                    <h2 style="color:#000000;">Where</h2>
+                    <address style="color:#000000;">
+                        <strong>Pioneer Creek Farm</strong><br>
+                        W4722 Superior Dr<br>
+                        Lomira, WI 53048<br>
+                    </address>
+                    <a  href="https://www.google.com/maps/dir//Pioneer+Creek+Farm,+Superior+Drive,+Lomira,+WI/@43.556544,-88.391747,15z/data=!4m9!4m8!1m0!1m5!1m1!1s0x88046eac31783f23:0xa3d022140f14235c!2m2!1d-88.391747!2d43.556544!3e0
+" class="btn btn-info" role="button" target="_blank">Get Directions</a>
+
+                </div>
+            </div>
+
+            <div class="col-8" style="padding-right: 0; align-self:center; text-align: center; align-content: center">
+                <div id="map" ></div>
                 <script defer
                         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxm19d9cgRylpCDAW4j1k_bzFnYGF5XXM&callback=initMap">
                 </script>
@@ -84,12 +90,10 @@
         </div>
     </div>
 
-</a>
-
-
+<a id="GalleryAnchor"></a>
 <section id="gallery" class="gallery section">
     <div class="container-fluid">
-        <div class="section-header">
+        <div class="section-header" id="photos">
             <h2 class="wow fadeInDown animated">Gallery</h2>
             <p class="wow fadeInDown animated"></p>
         </div>
@@ -130,6 +134,46 @@
                 </div>
                 <!-- overlay -->
             </a></div>
+
+
+            <div class="col-lg-3 col-md-6 col-sm-6 work"><a href="images/portfolio/09.jpg" class="work-box"> <img
+                    src="images/portfolio/09.jpg" alt="">
+                <div class="overlay">
+                    <div class="overlay-caption">
+                        <p><span class="icon icon-magnifying-glass"></span></p>
+                    </div>
+                </div>
+                <!-- overlay -->
+            </a></div>
+            <div class="col-lg-3 col-md-6 col-sm-6 work"><a href="images/portfolio/10.jpg" class="work-box"> <img
+                    src="images/portfolio/10.jpg" alt="">
+                <div class="overlay">
+                    <div class="overlay-caption">
+                        <p><span class="icon icon-magnifying-glass"></span></p>
+                    </div>
+                </div>
+                <!-- overlay -->
+            </a></div>
+            <div class="col-lg-3 col-md-6 col-sm-6 work"><a href="images/portfolio/11.jpg" class="work-box"> <img
+                    src="images/portfolio/11.jpg" alt="">
+                <div class="overlay">
+                    <div class="overlay-caption">
+                        <p><span class="icon icon-magnifying-glass"></span></p>
+                    </div>
+                </div>
+                <!-- overlay -->
+            </a></div>
+            <div class="col-lg-3 col-md-6 col-sm-6 work"><a href="images/portfolio/12.jpg" class="work-box"> <img
+                    src="images/portfolio/12.jpg" alt="">
+                <div class="overlay">
+                    <div class="overlay-caption">
+                        <p><span class="icon icon-magnifying-glass"></span></p>
+                    </div>
+                </div>
+                <!-- overlay -->
+            </a></div>
+
+
             <div class="col-lg-3 col-md-6 col-sm-6 work"><a href="images/portfolio/05.jpg" class="work-box"> <img
                     src="images/portfolio/05.jpg" alt="">
                 <div class="overlay">
@@ -166,14 +210,15 @@
                 </div>
                 <!-- overlay -->
             </a></div>
+
+
         </div>
     </div>
 </section>
 <!-- gallery section -->
 
-
+<a id="RSVPAnchor"></a>
 <div id="RSVPArea">
-
     <div class="form-content" id="RSVPForm">
         <form action="#" onsubmit="return false">
             <div id="wizard">
@@ -205,7 +250,7 @@
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                     <label class="btn form-control" id="plusOneBtn" aria-hidden="true"
                                            style="display: none">
-                                        <input type="checkbox" checked autocomplete="off"> Add a Plus One
+                                        <input id="plusOneBtnTxt" type="checkbox" checked autocomplete="off"> Add a Plus One
                                     </label>
                                 </div>
 
