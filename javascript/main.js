@@ -11,7 +11,7 @@ $(document).ready(function(){
 
     let nav = $('#primary-navigation, header');
 
-    let fixed = nav.offsetTop;
+    // let fixed = nav.offsetTop;
 
     nav.find('a').on('click', function () {
         let $el = $(this)
@@ -34,6 +34,10 @@ $(document).ready(function(){
         }
     });
 
+    $('#plusOneBtn').click(function(event){
+        console.log("Called");
+        $(this).text($(this).hasClass('active') ?  "Add a Plus One" : "Plus One Added");
+    });
 });
 
 
@@ -97,6 +101,7 @@ function initForm() {
                         personName.text(record.PersonName);
 
                         switch (record.PlusOneEligibility) {
+
                             case GoogleClient.PlusOneOptions.AccountedFor:
                                 $('#accountedForDialog').show();
                                 break;
