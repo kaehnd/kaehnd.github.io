@@ -7,7 +7,7 @@ html  {
 }
 @font-face {
     font-family: "AlexBrush";
-    src: url("fonts/AlexBrush-Regular.ttf");
+    src: url("../fonts/AlexBrush-Regular.ttf");
 }
 
 h1, h2 {
@@ -64,7 +64,7 @@ body{
 
 /*Header*/
 .header {
-    background-image: url('images/testphoto.jpg');
+    background-image: url('../images/headerphoto.jpg');
     background-size: cover;
     background-position: center;
     width: 100%;

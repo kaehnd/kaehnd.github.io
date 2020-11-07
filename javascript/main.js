@@ -8,7 +8,7 @@ $(document).ready(function(){
             + '<span class="col-sm clk-component"><span class="h1 font-weight-bold">%S</span> Sec</span>'));
     })
 
-
+    $('.work-box').fancybox();
     let nav = $('#primary-navigation, header');
 
     // let fixed = nav.offsetTop;
