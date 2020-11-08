@@ -40,7 +40,6 @@ $(document).ready(function(){
     });
 });
 
-
 function initForm() {
     let record;
     let nextButton;
@@ -61,22 +60,16 @@ function initForm() {
         },
         onStepChanging: async function (event, currentIndex, newIndex) {
 
-            $(".actions li a").each(function () {
-                if ($(this).text().includes("Next")) {
-                    nextButton = $(this);
-                } else if ($(this).text().includes("Previous")){
-                    prevButton = $(this);
-                } else if ($(this).text().includes("Submit")){
-                    submitButton = $(this);
-                }
-            });
-
             if (currentIndex === 1 && newIndex === 0) {
                 nextButton.show();
                 submitButton.show();
+                prevButton.hide();
             }
 
             if (currentIndex === 0 && newIndex === 1 ) {
+                prevButton.show();
+                submitButton.hide();
+                nextButton.hide();
                 let searchString = $('#searchBar').val();
                 let people = $('#peopleOptions').empty();
                 let personName = $('#personName');
@@ -88,12 +81,11 @@ function initForm() {
                     record = await GoogleClient.searchInSpreadsheet(searchString);
                     if (record === undefined) {
                         personNotFoundSection.show();
-                        submitButton.hide();
-                        nextButton.hide()
 
                     } else {
                         personNotFoundSection.hide();
-                        nextButton.show()
+                        nextButton.show();
+                        submitButton.show();
 
                         for (let i = record.NumAttendees; i >= 0; i --) {
                             people.append(`<option value=\"${i}\" class="option">${i}</option>`);
@@ -134,6 +126,19 @@ function initForm() {
             $('#submittedText').show();
         }
     });
+
+
+    $(".actions li a").each(function () {
+        if ($(this).text().includes("Next")) {
+            nextButton = $(this);
+        } else if ($(this).text().includes("Previous")){
+            prevButton = $(this);
+        } else if ($(this).text().includes("Submit")){
+            submitButton = $(this);
+        }
+    });
+
+    prevButton.hide();
 
     $('.steps').hide();
     $('.marker').hide();

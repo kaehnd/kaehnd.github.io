@@ -4,7 +4,7 @@
     <title>Brittany and Danny Wedding Website</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/main.css?v=1.0">
+    <link rel="stylesheet" type="text/css" href="css/main.css?v=1.1">
     <link rel="stylesheet" type="text/css" href="css/fancybox.css?v=1.0">
     <link rel="icon" href="images/icon.webp">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,7 +72,7 @@
                 <div class="text-center" style="padding-top: 20px;">
                     <h2 >Dress Code</h2>
                     <address>
-                        <p>Whatever u want dood.</p><br>
+                        <p>Dressy Casual :)</p><br>
                     </address>
                 </div>
             </div>
@@ -227,65 +227,77 @@
 </section>
 <!-- gallery section -->
 
-<a id="RSVPAnchor"></a>
-<div id="RSVPArea">
-    <div class="form-content" id="RSVPForm">
-        <form action="#" onsubmit="return false">
-            <div id="wizard">
-                <!-- SECTION 1 -->
-                <h4></h4>
-                <section>
-                    <h3>RSVP!</h3>
-                    <form class="form-inline mr-auto">
-                        <input id="searchBar" class="form-control mr-sm-2" type="search"
-                               placeholder="Search by full name" aria-label="Search">
-                    </form>
-                </section>
+<div class="container-fluid">
+    <div class="row align-items-start" style="mso-gutter-margin: 0; padding: 0; margin: 0">
+        <div class="col text-center" style="margin-top: 7px;">
+            <h3>Wedding Registry<br></h3>
+            <a  href="https://www.amazon.com/wedding/brittany-steinman-danny-kaehn-lomira-may-2021/registry/1ROLENR7AQTIR"
+                class="btn btn-info" role="button" target="_blank">Amazon Registry</a>
+        </div>
 
-                <!-- SECTION 2 -->
-                <h4></h4>
-                <section>
-                    <div id="personFound">
-                        <h3 id="personName">Set The Event</h3>
-                        <div class="form-group">
-                            <div class="form-price">
-                            </div>
-                            <div class="form-select">
-                                <div class="form-holder">
-                                    <label for="peopleOptions"></label><select name="people" id="peopleOptions"
-                                                                               class="form-control dropdown"></select>
-                                    <i class="zmdi zmdi-chevron-down"></i>
-                                </div>
+        <div class="col my-auto">
+            <a id="RSVPAnchor"></a>
+            <div id="RSVPArea">
+                <div class="form-content" id="RSVPForm">
+                    <form action="#" onsubmit="return false">
+                        <div id="wizard">
+                            <!-- SECTION 1 -->
+                            <h4></h4>
+                            <section>
+                                <h3>RSVP!</h3>
+                                <form class="form-inline mr-auto">
+                                    <input id="searchBar" class="form-control mr-sm-2" type="search"
+                                           placeholder="Search by full name" aria-label="Search">
+                                </form>
+                            </section>
 
-                                <div class="btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn form-control" id="plusOneBtn" aria-hidden="true"
-                                           style="display: none">
-                                        <input id="plusOneBtnTxt" type="checkbox" checked autocomplete="off"> Add a Plus One
-                                    </label>
-                                </div>
+                            <!-- SECTION 2 -->
+                            <h4></h4>
+                            <section>
+                                <div id="personFound">
+                                    <h3 id="personName">Set The Event</h3>
+                                    <div class="form-group">
+                                        <div class="form-price">
+                                        </div>
+                                        <div class="form-select">
+                                            <div class="form-holder">
+                                                <label for="peopleOptions"></label><select name="people" id="peopleOptions"
+                                                                                           class="form-control dropdown"></select>
+                                                <i class="zmdi zmdi-chevron-down"></i>
+                                            </div>
 
-                                <div id="accountedForDialog" aria-hidden="true" style="display: none;">
-                                    <p>Note: we have not provided you with a plus one because the person we assume you
-                                        would bring is also invited! :)<br>If you have questions, please let us now</p>
+                                            <div class="btn-group-toggle" data-toggle="buttons">
+                                                <label class="btn form-control" id="plusOneBtn" aria-hidden="true"
+                                                       style="display: none">
+                                                    <input id="plusOneBtnTxt" type="checkbox" checked autocomplete="off"> Add a Plus One
+                                                </label>
+                                            </div>
+
+                                            <div id="accountedForDialog" aria-hidden="true" style="display: none;">
+                                                <p>Note: we have not provided you with a plus one because the person we assume you
+                                                    would bring is also invited! :)<br>If you have questions, please let us now</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                                <div id="personNotFound" aria-hidden="true" style="display: none;">
+                                    <h3>Result Not Found!</h3>
+                                </div>
+                            </section>
                         </div>
-                    </div>
-                    <div id="personNotFound" aria-hidden="true" style="display: none;">
-                        <h3>Result Not Found!</h3>
-                    </div>
-                </section>
+                    </form>
+                </div>
+
+                <div id="submittedText" style="display: none">
+                    <h1>Thank you for submitting your RSVP to our wedding!</h1>
+                </div>
+
             </div>
-        </form>
+
+        </div>
+
     </div>
-
-
-    <div id="submittedText" style="display: none">
-        <h1>Thank you for submitting your RSVP to our wedding!</h1>
-    </div>
-
 </div>
-
 
 <footer style="padding: 50px"></footer>
 
@@ -308,6 +320,6 @@
 <script src="javascript/config.js?v=1.0"></script>
 <script src="javascript/jquery.steps.js?v=1.0"></script>
 <script src="javascript/GoogleClient.js?v=1.0"></script>
-<script src="javascript/main.js?v=1.0"></script>
+<script src="javascript/main.js?v=1.1"></script>
 </body>
 </html>
