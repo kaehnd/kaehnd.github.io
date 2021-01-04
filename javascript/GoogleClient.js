@@ -129,7 +129,9 @@ let GoogleClient = (function() {
             for (let j = 0; j < headers.length; j++) {
                 map.set(headers[j], valueRange.values[i][j]);
             }
-            sheet.set(map.get(key), {Row : map, RowNum : i+1})
+            if (map.get(key) !== undefined){ //Ignore rows with null keys, assume they are blank
+                sheet.set(map.get(key), {Row : map, RowNum : i+1})
+            }
         }
         return sheet;
     }
