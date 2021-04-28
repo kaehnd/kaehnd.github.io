@@ -195,7 +195,7 @@ let GoogleClient = (function() {
                 let data = [
                     ["RSVPed", attendees, plusOne ? PlusOneOptions.Reserved : sheetRow.Row.get(PlusOneEligibility)]
                 ];
-                let range = `H${sheetRow.RowNum}:J${sheetRow.RowNum}`
+                let range = `E${sheetRow.RowNum}:G${sheetRow.RowNum}`
                 return await putSpreadsheetData(range, data);
             }
         };
